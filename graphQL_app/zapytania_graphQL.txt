@@ -1,0 +1,118 @@
+Get klienci
+
+{
+  klients {
+    id
+    imieKlienta
+    nazwiskoKlienta
+    adresKlienta
+  }
+}
+
+{
+	zamowienie(id: 3) {
+  	  id
+    	suma
+   		posilki{
+        posilekNazwa
+        cena
+        typ
+      }
+    	data
+    	daneKlienta{
+        imieKlienta
+        nazwiskoKlienta
+        adresKlienta
+      }
+    
+    	
+  }
+}
+
+{
+	klient(id: 2){
+  	id
+  	imieKlienta
+		nazwiskoKlienta  	
+    adresKlienta
+	}
+}
+
+Get posilki
+{
+  posilki {
+    id
+    posilekNazwa
+    cena
+    typ
+  }
+}
+
+
+mutation {
+  createKlient: createKlient(
+    imieKlienta: "Angelika"
+    nazwiskoKlienta: "Nowak"
+    adresKlienta: "Kolno"
+  ) {
+    client {
+      id
+      imieKlienta
+      nazwiskoKlienta
+      adresKlienta
+    }
+  }
+}
+
+mutation{
+  delete_klient: deleteKlient(id: 2){
+    success
+  }
+}
+
+
+mutation{
+  updateKlient: updateKlient(
+    id: 3, 
+    imieKlienta: "Janusz", 
+    nazwiskoKlientae: "Górski", 
+    adresKlienta: "Kolno ", 
+
+  ){
+    client{
+      id
+      imieKlienta
+      nazwiskoKlienta
+      adresKlienta
+    }
+  }
+}
+
+mutation{
+  create_posilek: createPosilek(
+    posilekNazwa: "Żurek", 
+    cena: 12, 
+    typ: "norm", 
+  ){
+    posilek{
+      id
+      posilekNazwa
+      cena
+  		typ    
+    }
+  }
+}
+Tworzenie bez typowania
+mutation{
+  create_posilek: createPosilek(
+    posilekNazwa: "Żurek", 
+    cena: 12, 
+
+  ){
+    posilek{
+      id
+      posilekNazwa
+      cena 
+    }
+  }
+}
